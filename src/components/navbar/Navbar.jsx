@@ -6,6 +6,8 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 import toast from "react-hot-toast";
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
@@ -92,32 +94,45 @@ const Navbar = () => {
 
           {/* Right side Buttons */}
           <div className="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
-           {
-            !user &&  <div className={`md:block space-x-3 gap-4 hidden`}>
-            <Link to="/login">
-              <button
-                type="button"
-                className="text-[#222] bg-[#FDDE55] hover:bg-[#ffd310] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
-              >
-                Login
-              </button>
-            </Link>
-          </div>
-           }
-
             {
-              user && <div className={`flex items-center space-x-3 gap-4`}>
-                <Link className="hidden md:flex" >
+              !user && <div className={`md:block space-x-3 gap-4 hidden`}>
+                <Link to="/login">
                   <button
-                    onClick={handleLogout}
                     type="button"
                     className="text-[#222] bg-[#FDDE55] hover:bg-[#ffd310] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
+                  >
+                    Login
+                  </button>
+                </Link>
+              </div>
+            }
+
+            {
+              user && <div
+                className={`flex items-center space-x-3 gap-4`}
+              >
+                {
+                  user && <div className="tooltip tooltip-left avatar cursor-pointer" data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName}>
+                    <div className="w-12 rounded-full">
+                      <img src={user?.photoURL} />
+                    </div>
+                  </div>
+                }
+                <Link
+                  className="hidden md:flex"
+                  onClick={handleLogout}
+                  to="/login"
+                >
+                  <button
+                    type="button"
+                    className="text-white bg-[#FF6D60] hover:bg-[#ff988f] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
                   >
                     Logout
                   </button>
                 </Link>
               </div>
             }
+
 
             {/* Hamburger button */}
             <button
@@ -199,6 +214,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <Tooltip id="my-tooltip" />
     </div>
   );
 };
