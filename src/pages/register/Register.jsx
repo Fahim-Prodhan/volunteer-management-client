@@ -3,7 +3,7 @@ import { TiTick } from "react-icons/ti";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import logo from '../../assets/images/Logo-FUNDAPROTAN.png'
+import logo from '../../assets/images/logo.png'
 
 const Register = () => {
     const [eye, setEye] = useState(false)

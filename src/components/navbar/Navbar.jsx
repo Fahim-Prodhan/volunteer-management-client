@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
-import logo from '../../assets/images/Logo-FUNDAPROTAN-white.png'
+import logo from '../../assets/images/logo.png'
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
