@@ -158,7 +158,7 @@ const Navbar = () => {
         </div>
 
         {/* For Small device */}
-        <div className={`lg:hidden fixed p-6 z-[99] duration-500 md:w-[50%] w-[60%] h-screen top-0 text-white bg-[#5BBCFF] ${hamburger ? "right-0" : "right-[-350px] md:right-[-700px]"}`}>
+        <div className={`lg:hidden fixed p-6 z-[99] duration-500 md:w-[50%] w-[70%] h-screen top-0 text-white bg-[#5BBCFF] ${hamburger ? "right-0" : "right-[-350px] md:right-[-700px]"}`}>
           <button onClick={handleHamburger} className="text-2xl">
             <IoMdClose />
           </button>

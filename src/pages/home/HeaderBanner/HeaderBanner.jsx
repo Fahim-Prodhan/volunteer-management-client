@@ -41,9 +41,9 @@ function HeaderBanner() {
         </div>
 
         <div className="px-6 lg:px-0 w-full md:space-y-4 text-center z-20 absolute top-[45%] left-1/2 text-white -translate-x-1/2 -translate-y-1/2">
-          <p className="animate__animated animate__fadeInDown md:text-xl font-semibold">DONATE</p>
-          <h1 className="animate__animated animate__fadeInDown text-2xl lg:text-5xl lg:font-black font-bold">Change is Possible in Agriculture</h1>
-          <p className="animate__animated animate__fadeInDown md:text-xl pt-4">By supporting Farm Foundation, you can be part of the movement to help agriculture thrive.</p>
+          <p className="animate__animated animate__fadeInDown md:text-xl font-semibold">VOLUNTEERS</p>
+          <h1 className="animate__animated animate__fadeInDown text-2xl lg:text-5xl lg:font-black font-bold">Change is Possible in Society</h1>
+          <p className="animate__animated animate__fadeInDown md:text-xl md:pt-4 md:px-36">Discover the joy of giving back and making a real difference in your community,Join us in shaping a brighter tomorrow!</p>
         </div>
 
       </div>
