@@ -1,9 +1,8 @@
 
-import Banner from './banner/Banner';
-
 import { useState } from 'react';
 
 import { Helmet } from 'react-helmet';
+import HeaderBanner from './HeaderBanner/HeaderBanner';
 
 
 const Home = () => {
@@ -25,9 +24,9 @@ const Home = () => {
         
         <div id='home-container' className='scroll-smooth'>
             <Helmet>
-                <title>CraftoPia | Home</title>
+                <title>volunnet | Home</title>
             </Helmet>
-            <Banner></Banner>
+            <HeaderBanner></HeaderBanner>
             <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12">
 
                 {/* Craft Card Section */}

@@ -1,10 +1,36 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../assets/images/logo.png'
+import { AuthContext } from "../../provider/AuthProvider";
+import { signOut } from "firebase/auth";
+import auth from "../../firebase/firebase.config";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
+
+  const { user, setLoading } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    setLoading(true);
+    signOut(auth)
+      .then(() => {
+        toast.success("Logout Successful", {
+          position: "top-right",
+          duration: 2000,
+          style: { width: "200px", height: "70px" },
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Logout Successful", {
+          position: "top-right",
+          duration: 2000,
+          style: { width: "200px", height: "70px" },
+        });
+      });
+  };
 
   const handleHamburger = () => {
     setHamburger(!hamburger);
@@ -12,49 +38,38 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li><NavLink 
+      <li><NavLink
         onClick={hamburger}
         to="/"
         style={({ isActive }) => ({
           color: isActive ? "#fff" : "#fff",
-          border: isActive? '2px solid #FDDE55': '',
-          borderRadius:isActive? '5px':'',
-          padding:isActive? '5px 12px':'',
+          border: isActive ? '2px solid #FDDE55' : '',
+          borderRadius: isActive ? '5px' : '',
+          padding: isActive ? '5px 12px' : '',
           background: isActive ? "#1111111f" : "transparent",
         })}>Home</NavLink>
       </li>
-      <li><NavLink 
+      <li><NavLink
         onClick={hamburger}
         to="/about"
         style={({ isActive }) => ({
           color: isActive ? "#fff" : "#fff",
-          border: isActive? '2px solid #FDDE55': 'none',
-          borderRadius:isActive? '5px':'',
-          padding:isActive? '5px 12px':'',
+          border: isActive ? '2px solid #FDDE55' : 'none',
+          borderRadius: isActive ? '5px' : '',
+          padding: isActive ? '5px 12px' : '',
           background: isActive ? "#1111111f" : "transparent",
-        })}>About</NavLink>
+        })}>Need Volunteer</NavLink>
       </li>
-      <li><NavLink 
-        onClick={hamburger}
-        to="/projects"
-        style={({ isActive }) => ({
-          color: isActive ? "#fff" : "#fff",
-          border: isActive? '2px solid #FDDE55': 'none',
-          borderRadius:isActive? '5px':'',
-          padding:isActive? '5px 12px':'',
-          background: isActive ? "#1111111f" : "transparent",
-        })}>Projects</NavLink>
-      </li>
-      <li><NavLink 
-        onClick={hamburger}
-        to="/blogs"
-        style={({ isActive }) => ({
-          color: isActive ? "#fff" : "#fff",
-          border: isActive? '2px solid #FDDE55': 'none',
-          borderRadius:isActive? '5px':'',
-          padding:isActive? '5px 12px':'',
-          background: isActive ? "#1111111f" : "transparent",
-        })}>Blogs</NavLink>
+
+      <li>
+        <details>
+          <summary style={{ color: '#fff' }}>My Profile</summary>
+          <ul className="p-2 w-60">
+            <li><a>Add Volunteer Post</a></li>
+            <li><a>Manage My Post</a></li>
+            <li><a>My Volunteer Requested Post</a></li>
+          </ul>
+        </details>
       </li>
 
     </>
@@ -71,47 +86,38 @@ const Navbar = () => {
           >
             <img src={logo} className="w-16" alt="" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-              FUNDAPROTAN
+              VOLUNNET
             </span>
           </Link>
 
           {/* Right side Buttons */}
           <div className="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
-            <div className={`md:block space-x-3 gap-4 hidden`}>
-              <Link to="/admin/dashboard">
-                <button
-                  type="button"
-                  className="text-[#222] bg-[#FDDE55] hover:bg-[#ffd310] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
-                >
-                  Dashboard
-                </button>
-                <button
-                  type="button"
-                  className="text-[#222] bg-[#FDDE55] hover:bg-[#ffd310] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
-                >
-                  Login
-                </button>
-              </Link>
-              <Link to={"/register"}>
-                <button
-                  type="button"
-                  className="text-[#222] bg-[#FDDE55] hover:bg-[#ffd310] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center "
-                >
-                  Register
-                </button>
-              </Link>
-            </div>
+           {
+            !user &&  <div className={`md:block space-x-3 gap-4 hidden`}>
+            <Link to="/login">
+              <button
+                type="button"
+                className="text-[#222] bg-[#FDDE55] hover:bg-[#ffd310] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
+              >
+                Login
+              </button>
+            </Link>
+          </div>
+           }
 
-            <div className={`flex items-center space-x-3 gap-4`}>
-              <Link className="hidden md:flex" to="/login">
-                <button
-                  type="button"
-                  className="text-[#222] bg-[#FDDE55] hover:bg-[#ffd310] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
-                >
-                  Logout
-                </button>
-              </Link>
-            </div>
+            {
+              user && <div className={`flex items-center space-x-3 gap-4`}>
+                <Link className="hidden md:flex" >
+                  <button
+                    onClick={handleLogout}
+                    type="button"
+                    className="text-[#222] bg-[#FDDE55] hover:bg-[#ffd310] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
+                  >
+                    Logout
+                  </button>
+                </Link>
+              </div>
+            }
 
             {/* Hamburger button */}
             <button
@@ -142,10 +148,10 @@ const Navbar = () => {
 
           {/* Middle Part */}
           <div
-            className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
+            className="navbar items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
             id="navbar-cta"
           >
-            <ul className="flex flex-col font-medium p-4 lg:p-0 mt-4 border lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 ">
+            <ul className="menu menu-horizontal flex flex-col font-medium lg:p-0 border  rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 ">
               {links}
             </ul>
           </div>
