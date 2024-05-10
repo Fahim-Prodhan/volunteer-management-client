@@ -1,26 +1,12 @@
-
-import { useEffect, useState } from 'react';
-
 import { Helmet } from 'react-helmet';
 import HeaderBanner from './HeaderBanner/HeaderBanner';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Post from './post/Post';
 
 
 const Home = () => {
 
     const loadedPosts = useLoaderData();
-
-    const [number, setNumber] = useState(6)
-
-    const handleSeeMore = () => {
-        setNumber(number + 3)
-    }
-
-
-    // console.log(loadedSubcategory);
-
-
 
     return (
 
@@ -37,16 +23,15 @@ const Home = () => {
                     <p className='pt-3 pb-12 text-center'>Immediate volunteer needs: Help with meal prep, companionship for seniors, and community clean-ups. Make a difference now!</p>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch'>
                         {
-                            loadedPosts.slice(0, number).map((post, index) => <Post key={index} post={post}></Post>)
+                            loadedPosts.slice(0, 6).map((post, index) => <Post key={index} post={post}></Post>)
                         }
                     </div>
                     <div className='text-center mt-12'>
-                        <button
-                            onClick={handleSeeMore}
-                            className="bg-[#03AED2] text-white duration-150 px-5 py-2 rounded-md text-xl hover:bg-[#98D8AA]"
-                        >
-                            See All
-                        </button>
+                        <Link to='/needVolunteer'>
+                            <button className="bg-[#03AED2] text-white duration-150 px-5 py-2 rounded-md text-xl hover:bg-[#98D8AA]">
+                                See All
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 <div className='mt-[100px]' >

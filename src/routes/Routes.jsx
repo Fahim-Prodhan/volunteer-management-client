@@ -9,6 +9,7 @@ import baseUrl from "../services/helper";
 import AddPost from "../pages/addPost/AddPost";
 import PrivateRoute from "./PrivateRoute";
 import ViewDetails from "../pages/viewDetails/ViewDetails";
+import NeedVolunteer from "../pages/needVolunteer/NeedVolunteer";
 
 
 
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
           path:'/details/:id',
           element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
           loader:({params}) => fetch(`${baseUrl}/volunteerPost/${params.id}`)
+        },
+        {
+          path:'/needVolunteer',
+          element:<NeedVolunteer></NeedVolunteer>,
+          loader:()=>fetch(`${baseUrl}/volunteerPosts`)
         }
        
       ]

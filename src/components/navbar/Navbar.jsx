@@ -53,7 +53,7 @@ const Navbar = () => {
       </li>
       <li><NavLink
         onClick={hamburger}
-        to="/about"
+        to="/needVolunteer"
         style={({ isActive }) => ({
           color: isActive ? "#fff" : "#fff",
           border: isActive ? '2px solid #FDDE55' : 'none',
