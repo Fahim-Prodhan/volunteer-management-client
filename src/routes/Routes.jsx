@@ -5,6 +5,7 @@ import Root from "../layouts/root/Root";
 import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
+import baseUrl from "../services/helper";
 
 
 
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
         {
             path:'/',
             element:<Home></Home>,
+            loader:()=>fetch(`${baseUrl}/volunteerPosts`)
             
         },
         {

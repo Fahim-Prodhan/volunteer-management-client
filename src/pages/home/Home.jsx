@@ -1,13 +1,15 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Helmet } from 'react-helmet';
 import HeaderBanner from './HeaderBanner/HeaderBanner';
+import { useLoaderData } from 'react-router-dom';
+import Post from './post/Post';
 
 
 const Home = () => {
 
-
+    const loadedPosts = useLoaderData();
 
     const [number, setNumber] = useState(6)
 
@@ -29,16 +31,16 @@ const Home = () => {
             <HeaderBanner></HeaderBanner>
             <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12">
 
-                {/* Craft Card Section */}
-                {/* <div className='mt-12 md:mt-[100px]'>
-                    <h1 className='text-center text-2xl md:text-4xl font-bold'>Craft Items</h1>
-                    <p className='pt-3 pb-12 text-center'>Explore the world famous arts. Find your Choice</p>
+                {/* Volunteer Needs Now Section */}
+                <div className='mt-12 md:mt-[100px]'>
+                    <h1 className='text-center text-2xl md:text-4xl font-bold'>Volunteer Needs Now</h1>
+                    <p className='pt-3 pb-12 text-center'>Immediate volunteer needs: Help with meal prep, companionship for seniors, and community clean-ups. Make a difference now!</p>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch'>
                         {
-                            loadedCrafts.slice(0, number).map((craft, index) => <HomeCraft key={index} craft={craft}></HomeCraft>)
+                            loadedPosts.slice(0, number).map((craft, index) => <Post key={index} craft={craft}></Post>)
                         }
                     </div>
-                    {number < loadedCrafts.length && (
+                    {number < loadedPosts.length && (
                         <div className='text-center mt-12'>
                             <button
                                 onClick={handleSeeMore}
@@ -48,7 +50,7 @@ const Home = () => {
                             </button>
                         </div>
                     )}
-                </div> */}
+                </div>
                 <div className='mt-[100px]' >
                     {/* <h1 className='text-center text-2xl md:text-4xl font-bold'>Art & Craft Categories</h1>
                     <p className='pt-3 pb-12 text-center'>Find Your Desire Design and arts filtering from subcategory</p>
