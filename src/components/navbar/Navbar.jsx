@@ -179,39 +179,37 @@ const Navbar = () => {
           </button>
           <ul className="font-semibold space-y-3 mt-6 ">{links}</ul>
 
-          <div className={`md:hidden flex gap-4 mt-6`}>
-            <Link onClick={handleHamburger} to="/login">
-              <button
-                type="button"
-                className="text-[#111] bg-[#FDDE55] hover:bg-[#FDDE55] px-2 py-1 rounded-lg font-semibold"
+          {
+            !user && <div className={`md:hidden flex gap-4 mt-6`}>
+              <Link onClick={handleHamburger} to="/login">
+                <button
+                  type="button"
+                  className="text-[#111] bg-[#FDDE55] hover:bg-[#FDDE55] px-2 py-1 rounded-lg font-semibold"
+                >
+                  Login
+                </button>
+              </Link>
+
+            </div>
+          }
+          {
+            user && <div className={`md:hidden flex gap-4 mt-6`}>
+              <Link
+                onClick={() => {
+                  handleHamburger();
+                  handleLogout()
+                }}
+                to="/login"
               >
-                Login
-              </button>
-            </Link>
-            <Link onClick={handleHamburger} to="/register">
-              <button
-                type="button"
-                className="text-[#111] bg-[#FDDE55] hover:bg-[#FDDE55] px-2 py-1 rounded-lg font-semibold"
-              >
-                Register
-              </button>
-            </Link>
-          </div>
-          <div className={`md:hidden flex gap-4 mt-6`}>
-            <Link
-              onClick={() => {
-                handleHamburger();
-              }}
-              to="/login"
-            >
-              <button
-                type="button"
-                className="text-[#111] bg-[#FDDE55] hover:bg-[#FDDE55] px-2 py-1 rounded-lg font-semibold"
-              >
-                Logout
-              </button>
-            </Link>
-          </div>
+                <button
+                  type="button"
+                  className="text-[#111] bg-[#FDDE55] hover:bg-[#FDDE55] px-2 py-1 rounded-lg font-semibold"
+                >
+                  Logout
+                </button>
+              </Link>
+            </div>
+          }
         </div>
       </nav>
       <Tooltip id="my-tooltip" />
