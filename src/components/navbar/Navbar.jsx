@@ -67,7 +67,7 @@ const Navbar = () => {
         <details>
           <summary style={{ color: '#fff' }}>My Profile</summary>
           <ul className="p-2 w-60">
-            <li><a>Add Volunteer Post</a></li>
+            <li><Link to='/addPost'>Add Volunteer Post</Link></li>
             <li><a>Manage My Post</a></li>
             <li><a>My Volunteer Requested Post</a></li>
           </ul>

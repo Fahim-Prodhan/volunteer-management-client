@@ -1,5 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import 'aos/dist/aos.css';
 
 const Post = ({post}) => {
 
@@ -9,12 +9,12 @@ const Post = ({post}) => {
         title,
         category,
         deadline
-
     } = post
 
+
     return (
-        <div>
-             <div className="card md:min-h-[524px] bg-base-100 shadow-xl">
+        <div >
+             <div data-aos="zoom-in" data-aos-duration="800" className="card md:min-h-[524px] bg-base-100 shadow-xl">
                 <figure className='p-4 '><img className='rounded-lg  w-full' src={image} alt="Shoes" /></figure>
                 <div className="card-body pt-4">
                     <h2 className="card-title">
