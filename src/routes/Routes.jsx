@@ -7,6 +7,8 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import baseUrl from "../services/helper";
 import AddPost from "../pages/addPost/AddPost";
+import PrivateRoute from "./PrivateRoute";
+import ViewDetails from "../pages/viewDetails/ViewDetails";
 
 
 
@@ -32,7 +34,12 @@ const router = createBrowserRouter([
         },
         {
           path:'/addPost',
-          element:<AddPost></AddPost>
+          element:<PrivateRoute><AddPost></AddPost></PrivateRoute>
+        },
+        {
+          path:'/details/:id',
+          element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
+          loader:({params}) => fetch(`${baseUrl}/volunteerPost/${params.id}`)
         }
        
       ]

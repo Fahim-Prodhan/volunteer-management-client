@@ -118,7 +118,7 @@ const Login = () => {
             <Helmet>
                 <title>volunnet | Login</title>
             </Helmet>
-            <div className="relative md:top-10">
+            <div className="relative md:top-10 md:min-h-[580px]">
                 <div className="grid md:grid-cols-2 gap-7">
                     <div className="lg:py-0 py-4 ">
                         <div className='flex justify-center lg:justify-start my-6'>
