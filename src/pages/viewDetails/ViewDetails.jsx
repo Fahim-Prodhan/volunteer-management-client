@@ -1,10 +1,20 @@
 import React from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ViewDetails = () => {
     const loadedPost = useLoaderData()
     const id = useParams()
     console.log(id);
+
+    const handleBeVolunteer = () => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "No more Volunteer need!",
+        });
+        return
+    }
 
     return (
         <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto mt-4 lg:mt-12 mb-12">
@@ -31,7 +41,13 @@ const ViewDetails = () => {
                         <p className='text-[18px]'><span className='font-bold'>Deadline:</span> {loadedPost.deadline}</p>
                         <p className='text-[18px]'><span className='font-bold'>Organizer Name:</span> {loadedPost.name}</p>
                     </div>
-                    <Link to={`/be-volunteer/${id.id}`}><button className="btn bg-[#FDDE55] mt-8">Be Volunteer</button></Link>
+                    {!loadedPost.volunteers_needed < 1 ? (
+                        <Link to={`/be-volunteer/${id.id}`}>
+                            <button className="btn bg-[#FDDE55] mt-8">Be Volunteer</button>
+                        </Link>
+                    ) : (
+                        <button onClick={handleBeVolunteer} className="btn bg-[#FDDE55] mt-8">Be Volunteer</button>
+                    )}
                 </div>
             </div>
         </div>
