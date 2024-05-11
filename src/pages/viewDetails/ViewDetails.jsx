@@ -1,8 +1,10 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
 
 const ViewDetails = () => {
     const loadedPost = useLoaderData()
+    const id = useParams()
+    console.log(id);
 
     return (
         <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto mt-4 lg:mt-12 mb-12">
@@ -29,7 +31,7 @@ const ViewDetails = () => {
                         <p className='text-[18px]'><span className='font-bold'>Deadline:</span> {loadedPost.deadline}</p>
                         <p className='text-[18px]'><span className='font-bold'>Organizer Name:</span> {loadedPost.name}</p>
                     </div>
-                    <button className="btn bg-[#FDDE55] mt-8">Be Volunteer</button>
+                    <Link to={`/be-volunteer/${id.id}`}><button className="btn bg-[#FDDE55] mt-8">Be Volunteer</button></Link>
                 </div>
             </div>
         </div>
