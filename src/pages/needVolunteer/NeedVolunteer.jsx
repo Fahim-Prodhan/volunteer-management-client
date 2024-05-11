@@ -7,33 +7,48 @@ import axios from 'axios';
 import baseUrl from '../../services/helper';
 
 const NeedVolunteer = () => {
-    const {count} = useLoaderData()
     const [GridActive, setGridActive] = useState(true)
     const [TableActive, setTableActive] = useState(false)
     const [posts, setPosts] = useState([])
-    const [itemsPerPage, setItemsPerPage] = useState(2)
+    const [count, SetCount] = useState(0)
+    const [itemsPerPage, setItemsPerPage] = useState(4)
     const [currentPage, setCurrentPage] = useState(1)
-    const numberOfPages = Math.ceil(count/itemsPerPage)
+    const [search, setSearch] = useState('')
 
-    const pages = [...Array(numberOfPages).keys()].map(e => e+1)
+    const numberOfPages = Math.ceil(count / itemsPerPage)
 
-    const handlePrev = ()=>{
-        if(currentPage > 1){
-            setCurrentPage(currentPage-1)
+    const pages = [...Array(numberOfPages).keys()].map(e => e + 1)
+
+    const handlePrev = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1)
         }
     }
-    const handleNext = ()=>{
-        if(currentPage < pages.length){
-            setCurrentPage(currentPage+1)
+    const handleNext = () => {
+        if (currentPage < pages.length) {
+            setCurrentPage(currentPage + 1)
         }
     }
+
+    const handleSearch = e =>{
+        e.preventDefault()
+        const text = e.target.search.value
+        setSearch(text)
+    }
+
+    useEffect(() => {
+        axios.get(`${baseUrl}/volunteerPosts?page=${currentPage - 1}&size=${itemsPerPage}&search=${search}`)
+            .then(res => {
+                setPosts(res.data)
+            })
+    }, [currentPage, itemsPerPage, search])
 
     useEffect(()=>{
-        axios.get(`${baseUrl}/volunteerPosts?page=${currentPage-1}&size=${itemsPerPage}`)
+        axios.get(`${baseUrl}/postCounts?search=${search}`)
         .then(res=>{
-            setPosts(res.data)
+            SetCount(res.data.count)
         })
-    },[currentPage, itemsPerPage])
+    },[search])
 
     const handleGrid = () => {
         setGridActive(true)
@@ -49,8 +64,16 @@ const NeedVolunteer = () => {
         <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12 mb-12">
             <h1 className='text-center my-12 bg-base-200 text-3xl py-4 font-bold'>All Volunteer Posts</h1>
             <div className='flex my-4 gap-4'>
+               
                 <button onClick={handleGrid} className='btn text-xl'><IoGridSharp /></button>
                 <button onClick={handleTable} className='btn text-xl'><GiHamburgerMenu /></button>
+                <form className='flex gap-1' onSubmit={handleSearch}>
+                    <label className="input input-bordered flex items-center gap-2">
+                        <input name='search' type="text" className="grow" placeholder="Search" />
+                    </label>
+                    <button type='submit' className="btn btn-info text-white">Search</button>
+
+                </form>
             </div>
             <div className={`md:grid-cols-2 gap-6 ${GridActive ? 'grid' : 'hidden'}`}>
                 {
@@ -109,7 +132,7 @@ const NeedVolunteer = () => {
                                         </td>
                                         <td>{post.deadline}</td>
                                         <th>
-                                           <Link to={`/details/${post._id}`}> <button className="btn bg-[#FDDE55]">View Details</button></Link>
+                                            <Link to={`/details/${post._id}`}> <button className="btn bg-[#FDDE55]">View Details</button></Link>
                                         </th>
                                     </tr>
                                 )
@@ -123,9 +146,9 @@ const NeedVolunteer = () => {
             <div className='flex justify-center mt-12 gap-4'>
                 <button onClick={handlePrev} className="btn">Prev</button>
                 {
-                    pages.map(page =><button 
-                        onClick={()=> setCurrentPage(page)}
-                        className={`btn ${page == currentPage ? 'bg-[#FDDE55]':''}`}
+                    pages.map(page => <button
+                        onClick={() => setCurrentPage(page)}
+                        className={`btn ${page == currentPage ? 'bg-[#FDDE55]' : ''}`}
                         key={page}> {page}</button>)
                 }
                 <button onClick={handleNext} className="btn">Next</button>

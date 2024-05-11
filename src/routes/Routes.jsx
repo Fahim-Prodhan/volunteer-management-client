@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         {
           path:'/needVolunteer',
           element:<NeedVolunteer></NeedVolunteer>,
-          loader:()=>fetch(`${baseUrl}/postCounts`)
+          // loader:()=>fetch(`${baseUrl}/postCounts`)
         }
        
       ]
