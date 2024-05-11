@@ -13,8 +13,8 @@ const Post = ({post}) => {
 
 
     return (
-        <div >
-             <div data-aos="zoom-in" data-aos-duration="800" className="card md:min-h-[524px] bg-base-100 shadow-xl">
+        <div data-aos="zoom-in" data-aos-duration="800">
+             <div className="card md:min-h-[524px] bg-base-100 shadow-xl">
                 <figure className='p-4 '><img className='rounded-lg  w-full' src={image} alt="Shoes" /></figure>
                 <div className="card-body pt-4">
                     <h2 className="card-title">

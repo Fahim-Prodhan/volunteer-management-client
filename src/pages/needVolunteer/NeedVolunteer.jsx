@@ -1,12 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { IoGridSharp } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
+import 'animate.css';
+import axios from 'axios';
+import baseUrl from '../../services/helper';
 
 const NeedVolunteer = () => {
-    const loadedPosts = useLoaderData()
+    const {count} = useLoaderData()
     const [GridActive, setGridActive] = useState(true)
     const [TableActive, setTableActive] = useState(false)
+    const [posts, setPosts] = useState([])
+    const [itemsPerPage, setItemsPerPage] = useState(2)
+    const [currentPage, setCurrentPage] = useState(1)
+    const numberOfPages = Math.ceil(count/itemsPerPage)
+
+    const pages = [...Array(numberOfPages).keys()].map(e => e+1)
+
+    const handlePrev = ()=>{
+        if(currentPage > 1){
+            setCurrentPage(currentPage-1)
+        }
+    }
+    const handleNext = ()=>{
+        if(currentPage < pages.length){
+            setCurrentPage(currentPage+1)
+        }
+    }
+
+    useEffect(()=>{
+        axios.get(`${baseUrl}/volunteerPosts?page=${currentPage-1}&size=${itemsPerPage}`)
+        .then(res=>{
+            setPosts(res.data)
+        })
+    },[currentPage, itemsPerPage])
 
     const handleGrid = () => {
         setGridActive(true)
@@ -22,12 +49,12 @@ const NeedVolunteer = () => {
         <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12 mb-12">
             <h1 className='text-center my-12 bg-base-200 text-3xl py-4 font-bold'>All Volunteer Posts</h1>
             <div className='flex my-4 gap-4'>
-                <button onClick={handleGrid} className='btn text-2xl'><IoGridSharp /></button>
-                <button onClick={handleTable} className='btn text-2xl'><GiHamburgerMenu /></button>
+                <button onClick={handleGrid} className='btn text-xl'><IoGridSharp /></button>
+                <button onClick={handleTable} className='btn text-xl'><GiHamburgerMenu /></button>
             </div>
             <div className={`md:grid-cols-2 gap-6 ${GridActive ? 'grid' : 'hidden'}`}>
                 {
-                    loadedPosts.map(post => <div key={post._id} className="flex card shadow-lg ">
+                    posts.map(post => <div key={post._id} className="flex card shadow-lg animate__animated animate__zoomIn">
                         <div className="hero-content flex-col lg:flex-row">
                             <img src={post.image} className="max-w-[270px] rounded-lg shadow-2xl" />
                             <div>
@@ -60,8 +87,8 @@ const NeedVolunteer = () => {
                         <tbody>
                             {/* row 1 */}
                             {
-                                loadedPosts.map(post =>
-                                    <tr key={post._id}>
+                                posts.map((post) =>
+                                    <tr className='animate__animated animate__zoomIn' key={post._id}>
                                         <td>
                                             <div className="flex items-center gap-3">
                                                 <div className="avatar">
@@ -82,7 +109,7 @@ const NeedVolunteer = () => {
                                         </td>
                                         <td>{post.deadline}</td>
                                         <th>
-                                            <button className="btn bg-[#FDDE55]">View Details</button>
+                                           <Link to={`/details/${post._id}`}> <button className="btn bg-[#FDDE55]">View Details</button></Link>
                                         </th>
                                     </tr>
                                 )
@@ -91,6 +118,17 @@ const NeedVolunteer = () => {
                         </tbody>
                     </table>
                 </div>
+            </div>
+            {/* pagination */}
+            <div className='flex justify-center mt-12 gap-4'>
+                <button onClick={handlePrev} className="btn">Prev</button>
+                {
+                    pages.map(page =><button 
+                        onClick={()=> setCurrentPage(page)}
+                        className={`btn ${page == currentPage ? 'bg-[#FDDE55]':''}`}
+                        key={page}> {page}</button>)
+                }
+                <button onClick={handleNext} className="btn">Next</button>
             </div>
         </div>
     );
