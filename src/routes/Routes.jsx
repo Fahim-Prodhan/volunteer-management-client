@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import ViewDetails from "../pages/viewDetails/ViewDetails";
 import NeedVolunteer from "../pages/needVolunteer/NeedVolunteer";
 import BeAVolunteer from "../pages/BeAVolunteer/BeAVolunteer";
+import ManageMyPost from "../pages/manageMyPost/ManageMyPost";
 
 
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
           path:'/be-volunteer/:id',
           element:<BeAVolunteer></BeAVolunteer>,
           loader:({params}) => fetch(`${baseUrl}/volunteerPost/${params.id}`)
+        },
+        {
+          path:'/manage-post',
+          element:<PrivateRoute><ManageMyPost></ManageMyPost></PrivateRoute>
         }
        
       ]

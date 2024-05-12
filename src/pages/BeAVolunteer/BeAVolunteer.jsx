@@ -274,7 +274,7 @@ const BeAVolunteer = () => {
 
                         <div className="form-control mt-6 col-span-2">
                             <button type="submit" className="btn bg-[#03AED2] text-white">
-                                Be A Volunteer
+                                Request
                             </button>
                         </div>
                     </div>

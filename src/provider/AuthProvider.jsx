@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import toast from "react-hot-toast";
+import axios from "axios";
+import baseUrl from "../services/helper";
 
 
 
@@ -65,9 +67,23 @@ const AuthProvider = ({ children }) => {
 
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, currentUser=>{
+            const userEmail = currentUser?.email || user?.email
+            const loggedUser = { email: userEmail }
             setUser(currentUser)
             // console.log(currentUser);
             setLoading(false)
+            //if current user exit
+            if (currentUser) {
+                axios.post(`${baseUrl}/jwt`, loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+            } else {
+                axios.post(`${baseUrl}/logout`, loggedUser, { withCredentials: true })
+                .then(res => {
+                    console.log(res.data);
+                })
+            }
         })
 
         return ()=>{
