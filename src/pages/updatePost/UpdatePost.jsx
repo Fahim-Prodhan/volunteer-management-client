@@ -47,7 +47,7 @@ const UpdatePost = () => {
 
         };
 
-        axios.put(`${baseUrl}/myPost/update/${loadedPost._id}`, formValues)
+        axios.put(`${baseUrl}/myPost/update/${loadedPost._id}?email=${user?.email}`, formValues, {withCredentials:true})
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({

@@ -6,6 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const ManageMyPost = () => {
 
@@ -69,8 +70,34 @@ const ManageMyPost = () => {
 
     }
 
+    if (posts.length < 1) {
+        return (
+            <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12 mb-12">
+                <Helmet>
+                    <title>volunnet | Manage Post</title>
+                </Helmet>
+                <h1 className='font-bold text-3xl text-center pb-12'>Manage Your Posts</h1>
+                <div className='grid justify-center'>
+                    <div role="tablist" className="tabs tabs-lifted tabs-sm lg:tabs-lg">
+                        <a onClick={handleMyPost} role="tab" className={`tab ${active ? 'tab-active' : ''}`}> My Need Volunteer Post</a>
+                        <a onClick={handleMyRequestedPost} role="tab" className={`tab ${!active ? 'tab-active' : ''}`}>My Volunteer Request Post</a>
+                    </div>
+                </div>
+                <div className='text-center mt-12'>
+                    <h1 className='text-red-500 font-bold text-5xl pb-24'>No Data Available</h1>
+                </div>
+            </div>
+        )
+    }
+
+    console.log(posts.length);
+
+
     return (
         <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12 mb-12">
+            <Helmet>
+                <title>volunnet | Manage Post</title>
+            </Helmet>
             <h1 className='font-bold text-3xl text-center pb-12'>Manage Your Posts</h1>
             <div className='grid justify-center'>
                 <div role="tablist" className="tabs tabs-lifted tabs-sm lg:tabs-lg">

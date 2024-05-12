@@ -45,7 +45,7 @@ const AddPost = () => {
 
         };
 
-        axios.post(`${baseUrl}/volunteerPost`, formValues)
+        axios.post(`${baseUrl}/volunteerPost?email=${user?.email}`, formValues, {withCredentials:true})
         .then(res=>{
             if (res.data.insertedId) {
                       Swal.fire({

@@ -23,6 +23,7 @@ const Navbar = () => {
           duration: 2000,
           style: { width: "200px", height: "70px" },
         });
+    setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -76,6 +77,8 @@ const Navbar = () => {
 
     </>
   );
+
+
 
   return (
     <div>

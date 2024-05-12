@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import 'animate.css';
 import axios from 'axios';
 import baseUrl from '../../services/helper';
+import { Helmet } from 'react-helmet';
 
 const NeedVolunteer = () => {
     const [GridActive, setGridActive] = useState(true)
@@ -30,7 +31,7 @@ const NeedVolunteer = () => {
         }
     }
 
-    const handleSearch = e =>{
+    const handleSearch = e => {
         e.preventDefault()
         const text = e.target.search.value
         setSearch(text)
@@ -43,12 +44,12 @@ const NeedVolunteer = () => {
             })
     }, [currentPage, itemsPerPage, search])
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.get(`${baseUrl}/postCounts?search=${search}`)
-        .then(res=>{
-            SetCount(res.data.count)
-        })
-    },[search])
+            .then(res => {
+                SetCount(res.data.count)
+            })
+    }, [search])
 
     const handleGrid = () => {
         setGridActive(true)
@@ -62,9 +63,12 @@ const NeedVolunteer = () => {
 
     return (
         <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12 mb-12">
+            <Helmet>
+                <title>volunnet | Need Volunteer</title>
+            </Helmet>
             <h1 className='text-center my-12 bg-base-200 text-3xl py-4 font-bold'>All Volunteer Posts</h1>
-            <div className='flex my-4 gap-4'>
-               
+            <div className='flex my-4 gap-4 flex-wrap'>
+
                 <button onClick={handleGrid} className='btn text-xl'><IoGridSharp /></button>
                 <button onClick={handleTable} className='btn text-xl'><GiHamburgerMenu /></button>
                 <form className='flex gap-1' onSubmit={handleSearch}>
