@@ -253,7 +253,6 @@ const BeAVolunteer = () => {
                                 name="suggestion"
                                 placeholder="Write suggestion"
                                 className="input "
-                                required
                             />
                         </div>
                         <div className="form-control">

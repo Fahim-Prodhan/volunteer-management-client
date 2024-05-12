@@ -4,6 +4,8 @@ import baseUrl from '../../services/helper';
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const ManageMyPost = () => {
 
@@ -36,7 +38,36 @@ const ManageMyPost = () => {
         setPosts(myRequestedPosts)
     };
 
-    console.log(posts);
+    const handleDeleteMyPost = (id) => {
+        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`${baseUrl}/myPosts/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount === 1) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+
+                            // Remove from UI
+                            const remainingData = posts.filter(p => p._id != id)
+                            setPosts(remainingData)
+                        }
+                    })
+            }
+        });
+
+    }
 
     return (
         <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12 mb-12">
@@ -86,10 +117,20 @@ const ManageMyPost = () => {
                                         </td>
                                         <td>{post.deadline}</td>
                                         <th>
-                                            <div className='flex gap-4 text-2xl'>
-                                            <FaEdit className='text-blue-600 cursor-pointer'></FaEdit>
-                                            <MdDelete className='text-red-600 cursor-pointer'></MdDelete>
-                                            </div>
+                                            {
+                                                active && <div className='flex gap-4 text-2xl'>
+                                                    <Link to={`/updatePost/${post._id}`}>
+                                                        <FaEdit className='text-blue-600 cursor-pointer'></FaEdit>
+                                                    </Link>
+                                                    <MdDelete onClick={() => handleDeleteMyPost(post._id)} className='text-red-600 cursor-pointer'></MdDelete>
+                                                </div>
+                                            }
+
+                                            {
+                                                !active && <div className='flex gap-4'>
+                                                    <button onClick={() => handleDeleteMyPost(post._id)} className='text-red-600 bg-[#ff737330] cursor-pointer px-3 py-1 rounded-md'> Cancel</button>
+                                                </div>
+                                            }
                                         </th>
                                     </tr>
                                 )

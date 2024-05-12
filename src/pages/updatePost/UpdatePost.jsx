@@ -6,12 +6,14 @@ import { Helmet } from "react-helmet";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import { useLoaderData } from "react-router-dom";
 
-const AddPost = () => {
+const UpdatePost = () => {
 
     const { user } = useContext(AuthContext);
+    const loadedPost = useLoaderData()
 
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(loadedPost.deadline);
     const date = new Date(startDate);
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 because January is 0
@@ -45,34 +47,32 @@ const AddPost = () => {
 
         };
 
-        axios.post(`${baseUrl}/volunteerPost`, formValues)
-        .then(res=>{
-            if (res.data.insertedId) {
-                      Swal.fire({
+        axios.put(`${baseUrl}/myPost/update/${loadedPost._id}`, formValues)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
                         title: "Good job!",
-                        text: "Post is Published!",
+                        text: "Post is Updated!",
                         icon: "success",
-                      });
-        
-                      form.reset();
-                    } else {
-                      Swal.fire({
+                    });
+                } else {
+                    Swal.fire({
                         icon: "error",
                         title: "Oops...",
                         text: "Something went wrong!",
-                      });
-                    }
-        })
+                    });
+                }
+            })
     };
 
     return (
         <div className="mb-12 max-w-sm px-6 md:max-w-3xl lg:px-8 lg:max-w-6xl mx-auto mt-6 lg:mt-12">
             <Helmet>
-                <title>volunnet | Add Post</title>
+                <title>volunnet | Update Post</title>
             </Helmet>
             <div className="bg-[#eee] lg:px-28 md:py-16 text-center rounded-2xl">
                 <h1 className="font-semibold text-[#03AED2] pt-4 text-3xl md:text-5xl px-2">
-                    Add Volunteer Post
+                    Update Volunteer Post
                 </h1>
 
                 <form onSubmit={handleAddCraft} className="card-body ">
@@ -84,6 +84,7 @@ const AddPost = () => {
                                 </span>
                             </label>
                             <input
+                                defaultValue={loadedPost.image}
                                 type="text"
                                 name="image"
                                 placeholder="Enter Image Url"
@@ -98,6 +99,7 @@ const AddPost = () => {
                                 </span>
                             </label>
                             <input
+                                defaultValue={loadedPost.title}
                                 type="text"
                                 name="title"
                                 placeholder="Enter Item Name"
@@ -112,6 +114,7 @@ const AddPost = () => {
                                 </span>
                             </label>
                             <textarea
+                                defaultValue={loadedPost.description}
                                 type="text"
                                 name="description"
                                 placeholder="Enter Short Description"
@@ -126,7 +129,7 @@ const AddPost = () => {
                                     Category
                                 </span>
                             </label>
-                            <select name="category" className="select select-bordered w-full">
+                            <select defaultValue={loadedPost.category} name="category" className="select select-bordered w-full">
                                 <option>healthcare</option>
                                 <option>education</option>
                                 <option>social service</option>
@@ -140,6 +143,7 @@ const AddPost = () => {
                                 </span>
                             </label>
                             <input
+                                defaultValue={loadedPost.location}
                                 type="text"
                                 name="location"
                                 placeholder="Enter location"
@@ -154,6 +158,7 @@ const AddPost = () => {
                                 </span>
                             </label>
                             <input
+                                defaultValue={loadedPost.volunteers_needed}
                                 type="number"
                                 name="volunteers_needed"
                                 placeholder="Enter volunteer Number"
@@ -172,7 +177,7 @@ const AddPost = () => {
                         <div className="form-control">
                             <label className="label">
                                 <span className=" text-[14px] font-semibold label-text">
-                                . Organizer Email
+                                    . Organizer Email
                                 </span>
                             </label>
                             <input
@@ -204,7 +209,7 @@ const AddPost = () => {
 
                         <div className="form-control mt-6 col-span-2">
                             <button type="submit" className="btn bg-[#03AED2] text-white">
-                                Add
+                                Update
                             </button>
                         </div>
                     </div>
@@ -214,4 +219,4 @@ const AddPost = () => {
     );
 };
 
-export default AddPost;
+export default UpdatePost;
