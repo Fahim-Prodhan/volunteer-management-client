@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+
 import 'aos/dist/aos.css';
 
 const Post = ({post}) => {
@@ -13,7 +15,7 @@ const Post = ({post}) => {
 
 
     return (
-        <div data-aos="zoom-in" data-aos-duration="800">
+        <motion.div initial={{opacity:.7, scale:0.7}} whileInView={{opacity:1, scale:1}} transition={{duration: 0.6}} >
              <div className="card md:min-h-[524px] bg-base-100 shadow-xl">
                 <figure className='p-4 '><img className='rounded-lg  w-full' src={image} alt="Shoes" /></figure>
                 <div className="card-body pt-4">
@@ -37,7 +39,7 @@ const Post = ({post}) => {
                     
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
