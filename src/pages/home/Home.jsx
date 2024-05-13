@@ -4,6 +4,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import Post from './post/Post';
 import { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
+import CustomerReview from './customerReview/CustomerReview';
 
 
 const Home = () => {
@@ -60,6 +61,7 @@ const Home = () => {
 
             <div className="mt-12 md:mt-[100px] max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12">
                 {/* <CustomerReview></CustomerReview> */}
+                <CustomerReview></CustomerReview>
             </div>
         </div>
     );
