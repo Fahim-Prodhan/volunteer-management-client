@@ -13,7 +13,7 @@ import NeedVolunteer from "../pages/needVolunteer/NeedVolunteer";
 import BeAVolunteer from "../pages/BeAVolunteer/BeAVolunteer";
 import ManageMyPost from "../pages/manageMyPost/ManageMyPost";
 import UpdatePost from "../pages/updatePost/UpdatePost";
-import MyVolunteerRequest from "../pages/MyVolunteerRequest/MyVolunteerRequest";
+// import MyVolunteerRequest from "../pages/MyVolunteerRequest/MyVolunteerRequest";
 
 
 
@@ -64,10 +64,10 @@ const router = createBrowserRouter([
           element:<PrivateRoute><UpdatePost></UpdatePost></PrivateRoute>,
           loader:({params}) => fetch(`${baseUrl}/volunteerPost/${params.id}`)
         },
-        {
-          path:'/my-volunteer-request',
-          element:<PrivateRoute><MyVolunteerRequest></MyVolunteerRequest></PrivateRoute>
-        }
+        // {
+        //   path:'/my-volunteer-request',
+        //   element:<PrivateRoute><MyVolunteerRequest></MyVolunteerRequest></PrivateRoute>
+        // }
        
       ]
     },

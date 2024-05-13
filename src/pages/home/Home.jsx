@@ -54,17 +54,12 @@ const Home = () => {
                 </div>
 
             </div>
-            <div className='mt-[100px]' >
-                {/* <h1 className='text-center text-2xl md:text-4xl font-bold'>Get the Best Painting</h1>
-                <p className='pt-3 pb-8 text-center'>Celebrate EVERY moment with gifts from small shops!</p>
-                <LottieComp></LottieComp> */}
-            </div>
 
             <div className="mt-12 md:mt-[100px] max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12">
                 {/* <CustomerReview></CustomerReview> */}
                 <MissionAndVision></MissionAndVision>
             </div>
-            <div className="mt-12 md:mt-[100px] max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12">
+            <div className="mt-12 md:mt-[100px] max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-[100px]">
                 {/* <CustomerReview></CustomerReview> */}
                 <CustomerReview></CustomerReview>
             </div>

@@ -15,17 +15,22 @@ const ManageMyPost = () => {
     const [myRequestedPosts, setMyRequestedPosts] = useState([])
     const [posts, setPosts] = useState([])
     const [active, setActive] = useState(true)
+    const [loadingData, setLoadingData] = useState(false)
 
     useEffect(() => {
+        setLoadingData(true)
         axios.get(`${baseUrl}/myPosts?email=${user?.email}`, { withCredentials: true })
             .then(res => {
                 setMyPosts(res.data)
                 setPosts(res.data)
+                setLoadingData(false)
             })
 
         axios.get(`${baseUrl}/myRequestedPosts?email=${user?.email}`, { withCredentials: true })
             .then(res => {
                 setMyRequestedPosts(res.data)
+            setLoadingData(false)
+
             })
     }, [user?.email])
 
@@ -63,6 +68,9 @@ const ManageMyPost = () => {
                             // Remove from UI
                             const remainingData = posts.filter(p => p._id != id)
                             setPosts(remainingData)
+                            setTimeout(() => {
+                                window.location.reload() 
+                            }, 1000);
                         }
                     })
             }
@@ -70,7 +78,17 @@ const ManageMyPost = () => {
 
     }
 
+    console.log(posts);
+
+   
+
     if (posts.length < 1) {
+        if (loadingData) {
+            return <div className="flex justify-center"><span className="loading loading-ring loading-xs"></span>
+                <span className="loading loading-ring loading-sm"></span>
+                <span className="loading loading-ring loading-md"></span>
+                <span className="loading loading-ring loading-lg"></span></div>
+        }
         return (
             <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto mt-5 mb-12">
                 <Helmet>
