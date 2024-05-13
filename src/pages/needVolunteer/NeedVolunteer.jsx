@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { IoGridSharp } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import 'animate.css';

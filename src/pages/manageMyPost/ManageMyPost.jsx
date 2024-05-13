@@ -72,7 +72,7 @@ const ManageMyPost = () => {
 
     if (posts.length < 1) {
         return (
-            <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12 mb-12">
+            <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto mt-5 mb-12">
                 <Helmet>
                     <title>volunnet | Manage Post</title>
                 </Helmet>
@@ -94,7 +94,7 @@ const ManageMyPost = () => {
 
 
     return (
-        <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-12 mb-12">
+        <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto lg:mt-6 mb-12">
             <Helmet>
                 <title>volunnet | Manage Post</title>
             </Helmet>

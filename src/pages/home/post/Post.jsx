@@ -31,8 +31,8 @@ const Post = ({post}) => {
                     <div>
                         <hr />
                     </div>                 
-                    <div className='flex justify-between items-center mt-6'>
-                        <Link to={`/details/${_id}`}> <button className='btn bg-[#FDDE55]'>View Details</button> </Link>
+                    <div className='items-center mt-6'>
+                        <Link to={`/details/${_id}`}> <button className='btn bg-[#FDDE55] w-full'>View Details</button> </Link>
                     </div>
                     
                 </div>

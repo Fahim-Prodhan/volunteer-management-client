@@ -70,7 +70,7 @@ const Navbar = () => {
           <ul className="p-2 w-60">
             <li><Link to='/addPost'>Add Volunteer Post</Link></li>
             <li><Link to='/manage-post'>Manage My Post</Link></li>
-            <li><a>My Volunteer Requested Post</a></li>
+            <li><Link to='/my-volunteer-request'>My Volunteer Requested Post</Link></li>
           </ul>
         </details>
       </li>
