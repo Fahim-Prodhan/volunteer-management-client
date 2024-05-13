@@ -23,7 +23,7 @@ const ViewDetails = () => {
                     <div className='bg-base-200 p-8 mb-4'>
                         <img className='rounded-xl' src={loadedPost.image} alt="" />
                     </div>
-                    <h1 className='text-3xl font-bold text-[#03AED2]'>{loadedPost.title}</h1>
+                    <h1 className='text-3xl font-bold text-[#F6B17A]'>{loadedPost.title}</h1>
                     <h1 className='text-xl font-semibold'>#{loadedPost.category}</h1>
                 </div>
                 <div>
@@ -43,10 +43,10 @@ const ViewDetails = () => {
                     </div>
                     {!loadedPost.volunteers_needed < 1 ? (
                         <Link to={`/be-volunteer/${id.id}`}>
-                            <button className="btn bg-[#FDDE55] mt-8">Be Volunteer</button>
+                            <button className="btn bg-[#424769] text-white mt-8">Be Volunteer</button>
                         </Link>
                     ) : (
-                        <button onClick={handleBeVolunteer} className="btn bg-[#FDDE55] mt-8">Be Volunteer</button>
+                        <button onClick={handleBeVolunteer} className="btn bg-[#424769]  text-whitemt-8">Be Volunteer</button>
                     )}
                 </div>
             </div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoGridSharp } from "react-icons/io5";
@@ -75,7 +76,7 @@ const NeedVolunteer = () => {
                     <label className="input input-bordered flex items-center gap-2">
                         <input name='search' type="text" className="grow" placeholder="Search" />
                     </label>
-                    <button type='submit' className="btn btn-info text-white">Search</button>
+                    <button type='submit' className="btn bg-[#F6B17A] text-white">Search</button>
 
                 </form>
             </div>
@@ -85,11 +86,11 @@ const NeedVolunteer = () => {
                         <div className="hero-content flex-col lg:flex-row">
                             <img src={post.image} className="max-w-[270px] rounded-lg shadow-2xl" />
                             <div>
-                                <h1 className="text-xl font-bold pb-4 text-[#5BBCFF]">{post.title}</h1>
+                                <h1 className="text-xl font-bold pb-4 text-[#7077A1]">{post.title}</h1>
                                 <div>
                                     <p className='text-[17px]'><span className='font-bold'>Deadline:</span> {post.deadline}</p>
                                     <p className='text-[17px]'><span className='font-bold'>Location:</span> {post.location}</p>
-                                    <Link to={`/details/${post._id}`}><button className='text-[18px] bg-[#FDDE55] px-3 py-1 mt-2 rounded-md'>View Details</button></Link>
+                                    <Link to={`/details/${post._id}`}><button className='text-[18px] text-white bg-[#424769] px-3 py-1 mt-2 rounded-md'>View Details</button></Link>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +127,7 @@ const NeedVolunteer = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            <div className="font-bold text-[#5BBCFF]">{post.title}</div>
+                                            <div className="font-bold text-[#7077A1]">{post.title}</div>
                                         </td>
                                         <td>
                                             {post.category}
@@ -136,7 +137,7 @@ const NeedVolunteer = () => {
                                         </td>
                                         <td>{post.deadline}</td>
                                         <th>
-                                            <Link to={`/details/${post._id}`}> <button className="btn bg-[#FDDE55]">View Details</button></Link>
+                                            <Link to={`/details/${post._id}`}> <button className="btn text-white bg-[#424769]">View Details</button></Link>
                                         </th>
                                     </tr>
                                 )
@@ -152,7 +153,7 @@ const NeedVolunteer = () => {
                 {
                     pages.map(page => <button
                         onClick={() => setCurrentPage(page)}
-                        className={`btn ${page == currentPage ? 'bg-[#FDDE55]' : ''}`}
+                        className={`btn  ${page == currentPage ? 'bg-[#F6B17A] text-white' : ''}`}
                         key={page}> {page}</button>)
                 }
                 <button onClick={handleNext} className="btn">Next</button>

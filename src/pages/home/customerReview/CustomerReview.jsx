@@ -7,7 +7,7 @@ const CustomerReview = () => {
         <div className="pb-12">
             <h1 className="font-bold text-2xl md:text-4xl text-center pb-8">Volunteer Experiences</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }}  className="card card-side bg-base-100 shadow-xl cursor-pointer">
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} transition={{duration:0.3}} className="card card-side bg-base-100 shadow-xl cursor-pointer">
                     <div className="card-body">
                         <div className="avatar">
                             <div className="w-24 rounded-full">
@@ -19,7 +19,7 @@ const CustomerReview = () => {
                         <p>Volunteering at the local soup kitchen has been eye-opening. Interacting with guests from all walks of life has taught me empathy and the power of a warm meal. Every smile exchanged or story shared reminds me of the importance of community and giving back.</p>
                     </div>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} className="card card-side bg-base-100 shadow-xl cursor-pointer">
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} transition={{duration:0.3}}  className="card card-side bg-base-100 shadow-xl cursor-pointer">
                     <div className="card-body">
                         <div className="avatar">
                             <div className="w-24 rounded-full">
@@ -31,7 +31,7 @@ const CustomerReview = () => {
                         <p>Spending time with elderly residents at the nursing home has been incredibly rewarding. Listening to their stories, playing games brings so much joy to their lives and mine. This experience has taught me the value of cherishing every moment and the significance of human connection.</p>
                     </div>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }}  className="card card-side bg-base-100 shadow-xl cursor-pointer">
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} transition={{duration:0.3}}  className="card card-side bg-base-100 shadow-xl cursor-pointer">
                     <div className="card-body">
                         <div className="avatar">
                             <div className="w-24 rounded-full">
@@ -43,7 +43,7 @@ const CustomerReview = () => {
                         <p> Joining environmental cleanup efforts in my community has been empowering. Whether it's picking up litter in parks or participating in beach cleanups, every action feels like a step towards a cleaner. Being part of a team working towards a common goal has taught me the importance of collective action.</p>
                     </div>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }}  className="card card-side bg-base-100 shadow-xl cursor-pointer">
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} transition={{duration:0.3}}  className="card card-side bg-base-100 shadow-xl cursor-pointer">
                     <div className="card-body">
                         <div className="avatar">
                             <div className="w-24 rounded-full">

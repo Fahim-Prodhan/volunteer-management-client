@@ -15,14 +15,14 @@ const Post = ({post}) => {
 
 
     return (
-        <motion.div initial={{opacity:.7, scale:0.7}} whileInView={{opacity:1, scale:1}} transition={{duration: 0.6}} >
+        <motion.div initial={{opacity:.7, scale:0.7}} whileInView={{opacity:1, scale:1}} transition={{duration: 0.6}} viewport={{once:true}}>
              <div className="card md:min-h-[524px] bg-base-100 shadow-xl">
                 <figure className='p-4 '><img className='rounded-lg  w-full' src={image} alt="Shoes" /></figure>
                 <div className="card-body pt-4">
                     <h2 className="card-title">
                         {title}
                     </h2>
-                    <p className='-mt-2 pb-3 font-rancho font-semibold text-[#FF6D60]'>#{category}</p>
+                    <p className='-mt-2 pb-3 font-rancho font-semibold text-[#F6B17A]'>#{category}</p>
                     <div>
                         <hr />
                     </div>
@@ -34,7 +34,7 @@ const Post = ({post}) => {
                         <hr />
                     </div>                 
                     <div className='items-center mt-6'>
-                        <Link to={`/details/${_id}`}> <button className='btn bg-[#FDDE55] w-full'>View Details</button> </Link>
+                        <Link to={`/details/${_id}`}> <button className='btn bg-[#7077A1] hover:bg-[#424769] w-full text-white'>View Details</button> </Link>
                     </div>
                     
                 </div>

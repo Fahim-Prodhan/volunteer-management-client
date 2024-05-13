@@ -41,7 +41,7 @@ const Home = () => {
                     </div>
                     <div className='text-center mt-12'>
                         <Link to='/needVolunteer'>
-                            <button className="bg-[#03AED2] text-white duration-150 px-5 py-2 rounded-md text-xl hover:bg-[#98D8AA]">
+                            <button className="bg-[#F6B17A] text-white duration-150 px-5 py-2 rounded-md text-xl hover:bg-[#ff9b4a]">
                                 See All
                             </button>
                         </Link>

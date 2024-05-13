@@ -70,8 +70,8 @@ const AddPost = () => {
             <Helmet>
                 <title>volunnet | Add Post</title>
             </Helmet>
-            <div className="bg-[#eee] lg:px-28 md:py-16 text-center rounded-2xl">
-                <h1 className="font-semibold text-[#03AED2] pt-4 text-3xl md:text-5xl px-2">
+            <div className="bg-[#cbcbcb6b] lg:px-28 md:py-16 text-center rounded-2xl">
+                <h1 className="font-semibold text-[#F6B17A] pt-4 text-3xl md:text-5xl px-2">
                     Add Volunteer Post
                 </h1>
 
@@ -203,7 +203,7 @@ const AddPost = () => {
 
 
                         <div className="form-control mt-6 col-span-2">
-                            <button type="submit" className="btn bg-[#03AED2] text-white">
+                            <button type="submit" className="btn border-0 bg-[#7077A1] hover:bg-[#424769] text-white">
                                 Add
                             </button>
                         </div>

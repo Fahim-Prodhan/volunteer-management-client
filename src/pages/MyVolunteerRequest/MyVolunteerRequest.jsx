@@ -30,7 +30,7 @@ const MyVolunteerRequest = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`${baseUrl}/myRequestedPosts/${id}`)
+                axios.delete(`${baseUrl}/myRequestedPosts/${id}?email=${user?.email}`, {withCredentials:true})
                     .then(res => {
                         if (res.data.deletedCount === 1) {
                             Swal.fire({
@@ -69,7 +69,7 @@ const MyVolunteerRequest = () => {
                         <div className="hero-content flex-col lg:flex-row">
                             <img src={post.image} className="max-w-[270px] rounded-lg shadow-2xl" />
                             <div>
-                                <h1 className="text-xl font-bold pb-4 text-[#5BBCFF]">{post.title}</h1>
+                                <h1 className="text-xl font-bold pb-4 text-[#7077A1]">{post.title}</h1>
                                 <div>
                                     <p className='text-[17px]'><span className='font-bold'>Deadline:</span> {post.deadline}</p>
                                     <p className='text-[17px]'><span className='font-bold'>Location:</span> {post.location}</p>

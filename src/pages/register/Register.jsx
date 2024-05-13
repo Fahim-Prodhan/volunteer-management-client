@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../provider/AuthProvider";
 import { TiTick } from "react-icons/ti";
 import logo from '../../assets/images/logo blue.png'
+import { motion } from "framer-motion";
+
 
 const Register = () => {
     const { createUser, setReload } = useContext(AuthContext)
@@ -70,8 +72,8 @@ const Register = () => {
                 <title>volunnet | Register</title>
             </Helmet>
             <div className="">
-                <div className="grid md:grid-cols-2 gap-7">
-                    <div className="lg:py-0 py-4 ">
+                <div  className="grid md:grid-cols-2 gap-7">
+                    <motion.div initial={{opacity:.7, scale:0.7, x:-200}} whileInView={{opacity:1, scale:1, x:0}} transition={{duration: 0.6}} viewport={{once:true}} className="lg:py-0 py-4 ">
                         <div className='flex justify-center lg:justify-start my-6'>
                             <img className='lg:w-[40%] w-1/2' src={logo} alt="" />
                         </div>
@@ -81,8 +83,8 @@ const Register = () => {
                             <p className='flex items-center gap-1 my-4 lg:text-xl'><span className='text-2xl text-[#68D2E8]'><TiTick /></span>Work as volunteer with any org</p>
                             <p className='flex items-center gap-1 my-4 lg:text-xl'><span className='text-2xl text-[#68D2E8]'><TiTick /></span>Join us in shaping a brighter tomorrow!</p>
                         </div>
-                    </div>
-                    <div className="card shrink-0 w-full shadow-2xl bg-base-100">
+                    </motion.div>
+                    <motion.div initial={{opacity:.7, scale:0.7, x:200}} whileInView={{opacity:1, scale:1, x:0}} transition={{duration: 0.6}} viewport={{once:true}} className="card shrink-0 w-full shadow-2xl bg-base-100">
                         <h1 className="text-center text-5xl font-bold py-4">Register</h1>
                         <form onSubmit={handleRegister} className="card-body">
                             <div className="form-control">
@@ -119,7 +121,7 @@ const Register = () => {
                                 <button type="submit" className="btn bg-[#FF6D60] text-white">Create an account</button>
                             </div>
                         </form>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>

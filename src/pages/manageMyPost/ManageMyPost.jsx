@@ -51,7 +51,7 @@ const ManageMyPost = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`${baseUrl}/myPosts/${id}`)
+                axios.delete(`${baseUrl}/myPosts/${id}?email=${user?.email}`, {withCredentials:true})
                     .then(res => {
                         if (res.data.deletedCount === 1) {
                             Swal.fire({
@@ -134,7 +134,7 @@ const ManageMyPost = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            <div className="font-bold text-[#5BBCFF]">{post.title}</div>
+                                            <div className="font-bold text-[#7077A1]">{post.title}</div>
                                         </td>
                                         <td>
                                             {post.category}
