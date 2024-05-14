@@ -10,7 +10,7 @@ const MissionAndVision = () => {
     return (
         <div >
             <h1 className='text-center pb-12 text-3xl md:text-4xl font-bold'>Mission & Vision</h1>
-            <motion.div initial={{opacity:.7, scale:0.7, x: -300}} whileInView={{opacity:1, scale:1,x:0}} transition={{duration: 0.6}} viewport={{once:true}}  className='grid lg:grid-cols-2 items-center gap-6'>
+            <motion.div initial={{opacity:.7, scale:0.7 }} whileInView={{opacity:1, scale:1}} transition={{duration: 0.6}} viewport={{once:true}}  className='grid lg:grid-cols-2 items-center gap-6'>
                 <div>
                     <h1 className='text-3xl font-black pb-4 text-[#F6B17A]'>Our Mission</h1>
                     <p className='md:text-xl'>Our mission is to serve as the catalyst for transformative change by seamlessly connecting dedicated volunteers with impactful opportunities across diverse communities. We aim to empower individuals to channel their passion into purposeful action, fostering a culture of service and collaboration that drives positive social change.</p>
@@ -20,7 +20,7 @@ const MissionAndVision = () => {
                 </div>
             </motion.div>
 
-            <motion.div initial={{opacity:.7, scale:0.7, x: 300}} whileInView={{opacity:1, scale:1,x:0}} transition={{duration: 0.6}} viewport={{once:true}} className='grid lg:grid-cols-2 items-center mt-12 gap-6'>
+            <motion.div initial={{opacity:.7, scale:0.7}} whileInView={{opacity:1, scale:1}} transition={{duration: 0.6}} viewport={{once:true}} className='grid lg:grid-cols-2 items-center mt-12 gap-6'>
                 <div>
                     <img src={img2} alt="" />
                 </div>
