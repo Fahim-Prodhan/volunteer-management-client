@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../provider/AuthProvider';
 import axios from 'axios';
 import baseUrl from '../../services/helper';
+import { Helmet } from 'react-helmet';
 
 const ViewDetails = () => {
     const [myRequestedPosts, setMyRequestedPosts] = useState([])
@@ -53,6 +54,9 @@ const ViewDetails = () => {
 
     return (
         <div className="max-w-sm px-6 md:max-w-3xl md:px-8 lg:max-w-7xl mx-auto mt-4 lg:mt-12 mb-12">
+            <Helmet>
+                <title>volunnet | View Details</title>
+            </Helmet>
             <div className='grid md:grid-cols-2 gap-12'>
                 <div >
                     <div className='bg-base-200 p-8 mb-4'>
