@@ -16,6 +16,7 @@ const NeedVolunteer = () => {
     const [itemsPerPage, setItemsPerPage] = useState(4)
     const [currentPage, setCurrentPage] = useState(1)
     const [search, setSearch] = useState('')
+    const [loadingData, setLoadingData] = useState(true)
 
     const numberOfPages = Math.ceil(count / itemsPerPage)
 
@@ -39,9 +40,11 @@ const NeedVolunteer = () => {
     }
 
     useEffect(() => {
+       
         axios.get(`${baseUrl}/volunteerPosts?page=${currentPage - 1}&size=${itemsPerPage}&search=${search}`)
             .then(res => {
                 setPosts(res.data)
+                setLoadingData(false)
             })
     }, [currentPage, itemsPerPage, search])
 
@@ -49,6 +52,7 @@ const NeedVolunteer = () => {
         axios.get(`${baseUrl}/postCounts?search=${search}`)
             .then(res => {
                 SetCount(res.data.count)
+                setLoadingData(false)
             })
     }, [search])
 
@@ -60,6 +64,14 @@ const NeedVolunteer = () => {
     const handleTable = () => {
         setGridActive(false)
         setTableActive(true)
+    }
+
+    
+    if (loadingData) {
+        return( <div className="flex justify-center"><span className="loading loading-ring loading-xs"></span>
+            <span className="loading loading-ring loading-sm"></span>
+            <span className="loading loading-ring loading-md"></span>
+            <span className="loading loading-ring loading-lg"></span></div>)
     }
 
     return (

@@ -6,13 +6,14 @@ import { Helmet } from "react-helmet";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const BeAVolunteer = () => {
 
     const loadedPost = useLoaderData()
 
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const [startDate, setStartDate] = useState(new Date());
     const date = new Date(startDate);
@@ -66,7 +67,9 @@ const BeAVolunteer = () => {
                         icon: "success",
                     });
 
-                    form.reset();
+                   setTimeout(() => {
+                    navigate('/manage-post')
+                   }, 1500);
                 } else {
                     Swal.fire({
                         icon: "error",

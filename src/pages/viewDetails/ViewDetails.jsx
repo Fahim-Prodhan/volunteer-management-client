@@ -1,19 +1,54 @@
-import React from 'react';
-import { Link, useLoaderData, useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import {useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../provider/AuthProvider';
+import axios from 'axios';
+import baseUrl from '../../services/helper';
 
 const ViewDetails = () => {
+    const [myRequestedPosts, setMyRequestedPosts] = useState([])
     const loadedPost = useLoaderData()
     const id = useParams()
-    console.log(id);
+    const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        axios.get(`${baseUrl}/myRequestedPosts?email=${user?.email}`, { withCredentials: true })
+        .then(res => {
+            setMyRequestedPosts(res.data)
+        })
+
+    },[user?.email])
 
     const handleBeVolunteer = () => {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "No more Volunteer need!",
-        });
-        return
+        const found = myRequestedPosts.find(post=> post.title == loadedPost.title)
+        console.log(found);
+
+        if (loadedPost.volunteers_needed < 1) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "No more Volunteer need!",
+            });
+            return
+        }else if(user?.email == loadedPost?.email) {
+            Swal.fire({
+                icon: "error",
+                title: "Sorry",
+                text: "You can't be volunteer of your own  Post",
+            });
+            return
+        }else if(found){
+            Swal.fire({
+                icon: "error",
+                title: "Sorry",
+                text: "You are a already volunteer in this  Post",
+            });
+            return
+        }
+        else {
+            navigate(`/be-volunteer/${id.id}`)
+        }
     }
 
     return (
@@ -41,13 +76,15 @@ const ViewDetails = () => {
                         <p className='text-[18px]'><span className='font-bold'>Deadline:</span> {loadedPost.deadline}</p>
                         <p className='text-[18px]'><span className='font-bold'>Organizer Name:</span> {loadedPost.name}</p>
                     </div>
-                    {!loadedPost.volunteers_needed < 1 ? (
+
+                    <button onClick={handleBeVolunteer} className="btn bg-[#424769] text-white mt-8">Be Volunteer</button>
+                    {/* {loadedPost.volunteers_needed > 1 ? (
                         <Link to={`/be-volunteer/${id.id}`}>
                             <button className="btn bg-[#424769] text-white mt-8">Be Volunteer</button>
                         </Link>
                     ) : (
                         <button onClick={handleBeVolunteer} className="btn bg-[#424769]  text-whitemt-8">Be Volunteer</button>
-                    )}
+                    )} */}
                 </div>
             </div>
         </div>
