@@ -20,7 +20,7 @@ const AddPost = () => {
     // Construct the formatted date string
     const deadline = `${year}-${month}-${day}`;
 
-    const handleAddCraft = (e) => {
+    const handleAddPost = (e) => {
         e.preventDefault();
         const form = e.target;
         const image = form.image.value;
@@ -75,7 +75,7 @@ const AddPost = () => {
                     Add Volunteer Post
                 </h1>
 
-                <form onSubmit={handleAddCraft} className="card-body ">
+                <form onSubmit={handleAddPost} className="card-body ">
                     <div className="md:grid md:grid-cols-2 gap-3">
                         <div className="form-control">
                             <label className="label">
